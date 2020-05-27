@@ -6,3 +6,11 @@ To determine nearby satellites, we leverage the API from [n2yo.com](https://www.
 ## Prerequisites
 To run this app you'll need to obtain both an API key for Google Maps (placed [here](https://github.com/neosensory/whats-up-neosensory/blob/master/app/src/release/res/values/google_maps_api.xml)) API key from [n2yo.com](https://www.n2yo.com/) (place it [here](https://github.com/neosensory/whats-up-neosensory/blob/master/app/src/main/res/values/other_api_keys.xml))
 
+## Other stuff
+Note: The n2yo.com API enforces a limit of 1000 requests per hour (they seem to imply you'll simply get banned by exceeding the request rate). It is therefore important to be cognizant of this when setting the following parameters:
+* `REFRESHSATELLITESPERIOD` the time in ms between each request to gather a list of all the satellites near the user. Each refresh is an n2yo.com "What's Up" request.
+* `MAXSATELLITES` the maximum number of satellites to track at any given point in time. Each tracked satellite has an n2yo.com TLE request associate it.
+
+The maximum possible requests per refresh is (1+`MAXSATELLITES`). If the refresh period is x seconds, then the maximum possible requests per hour is (1+`MAXSATELLITES`)*(3600/x). 
+
+Currently, the satellites are stored in a HashTable using their NORAD ID as a key. The maximum HashTable size is `MaxSatellites.` Tracked satellites only get removed if they're out of our defined distance and moving away from the user location. Therefore, it is possible to have <= (1+`MAXSATELLITES`) N2YO API requests per refresh.
