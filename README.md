@@ -7,7 +7,7 @@ To determine nearby satellites, we leverage the API from [n2yo.com](https://www.
 To run this app you'll need to obtain both an API key for Google Maps (placed [here](https://github.com/neosensory/whats-up-neosensory/blob/master/app/src/release/res/values/google_maps_api.xml)) API key from [n2yo.com](https://www.n2yo.com/) (place it [here](https://github.com/neosensory/whats-up-neosensory/blob/master/app/src/main/res/values/other_api_keys.xml))
 
 ## Other stuff
-Note: The n2yo.com API enforces a limit of 1000 requests per hour (they seem to imply you'll simply get banned by exceeding the request rate). It is therefore important to be cognizant of this when setting the following parameters:
+Note: The [n2yo.com API](https://www.n2yo.com/api/) enforces a limit of 1000 requests per hour and are adamant about not abusing this. It is therefore important to be cognizant of this when setting the following parameters:
 * `REFRESHSATELLITESPERIOD` the time in ms between each request to gather a list of all the satellites near the user. Each refresh is an n2yo.com "What's Up" request.
 * `MAXSATELLITES` the maximum number of satellites to track at any given point in time. Each tracked satellite has an n2yo.com TLE request associate it.
 
