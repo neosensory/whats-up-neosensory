@@ -1,2 +1,2 @@
-# whats-up-neosensory
-A demo app using the Android SDK for feeling satellites whizzing by around you
+# whats-up-android
+Neosensory Android SDK demo app that lets you feel satellites around you
