@@ -6,6 +6,9 @@ To determine nearby satellites, we leverage the API from [n2yo.com](https://www.
 ## Prerequisites
 To run this app you'll need to obtain both an API key for Google Maps (placed [here](https://github.com/neosensory/whats-up-neosensory/blob/master/app/src/release/res/values/google_maps_api.xml)) API key from [n2yo.com](https://www.n2yo.com/) (place it [here](https://github.com/neosensory/whats-up-neosensory/blob/master/app/src/main/res/values/other_api_keys.xml))
 
+## Pairing
+You may need to put your Buzz wristband into pairing mode, by pressing and holding the plus and minus buttons. Otherwise, the app should automatically connect to the first Buzz it finds in the environment.
+
 ## Other stuff
 Note: The [n2yo.com API](https://www.n2yo.com/api/) enforces a limit of 1000 requests per hour and are adamant about not abusing this. It is therefore important to be cognizant of this when setting the following parameters:
 * `REFRESHSATELLITESPERIOD` the time in ms between each request to gather a list of all the satellites near the user. Each refresh is an n2yo.com "What's Up" request.
