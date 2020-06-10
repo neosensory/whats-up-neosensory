@@ -17,7 +17,7 @@ public class Satellite {
   private Boolean hasMarker;
   private double distanceToUser;
   private double alphaDistanceToUser;
-  private double lastDistancetoUser;
+  private double lastDistanceToUser;
   private double userBearing;
   private Boolean userBearingSet;
   private Boolean distanceToUserSet;
@@ -67,7 +67,7 @@ public class Satellite {
   }
 
   /**
-   * set the bearing from the user to the satellite
+   * Set the bearing from the user to the satellite
    *
    * @param bearing - the bearing (in degrees)
    */
@@ -77,7 +77,7 @@ public class Satellite {
   }
 
   /**
-   * get the bearing from the user to the satellite (in degrees)
+   * Get the bearing from the user to the satellite (in degrees)
    *
    * @return the bearing (if it's set), or -1 if it's not
    */
@@ -90,7 +90,7 @@ public class Satellite {
   }
 
   /**
-   * set whether or not the satellite is outside a defined distance from the user
+   * Set whether or not the satellite is outside a defined distance from the user
    *
    * @param outsideUserRange_
    */
@@ -99,7 +99,7 @@ public class Satellite {
   }
 
   /**
-   * get whether or not the satellite is outside a defined distance from the user
+   * Get whether or not the satellite is outside a defined distance from the user
    *
    * @return
    */
@@ -108,7 +108,7 @@ public class Satellite {
   }
 
   /**
-   * remove the Google Maps marker associated with the satellite. This needs to happen on a UI
+   * Remove the Google Maps marker associated with the satellite. This needs to happen on a UI
    * thread.
    */
   public void removeMarker() {
@@ -139,7 +139,7 @@ public class Satellite {
   }
 
   /**
-   * This maps the distance from user to satellite on an inverse 0-1 scale (for setting the marker
+   * Map the distance from user to satellite on an inverse 0-1 scale (for setting the marker
    * // alpha). 0 = further, 1 = closer. Also determine based on previous calculation if the
    * satellite is headed to/away from user
    *
@@ -148,28 +148,19 @@ public class Satellite {
    *     out
    */
   public void setDistanceToUser(double distance, double maxDistance) {
-    if (!distanceToUserSet) {
       distanceToUser = distance;
       alphaDistanceToUser =
           1 - Utilities.getLinearMap((float) distance, 0, (float) maxDistance, 0, 1, true);
-      lastDistancetoUser = distanceToUser;
-    } else {
-      distanceToUser = distance;
-      alphaDistanceToUser =
-          1 - Utilities.getLinearMap((float) distance, 0, (float) maxDistance, 0, 1, true);
-      double direction = distanceToUser - lastDistancetoUser;
-      lastDistancetoUser = distanceToUser;
-      if (direction <= 0) {
-        headedTowardsUser = true;
-      } else {
-        headedTowardsUser = false;
-      }
+    if (distanceToUserSet) {
+      double direction = distanceToUser - lastDistanceToUser;
+      headedTowardsUser = (direction <= 0);
     }
+    lastDistanceToUser = distanceToUser;
     distanceToUserSet = true;
   }
 
   /**
-   * get whether or not the satellite is getting closer to the user
+   * Get whether or not the satellite is getting closer to the user
    *
    * @return true if the satellite is moving towards the user
    */
@@ -178,7 +169,7 @@ public class Satellite {
   }
 
   /**
-   * get the distance to user if it's been set
+   * Get the distance to user if it's been set
    *
    * @return the distance (in km) or -1 if this has not yet been set
    */
@@ -204,7 +195,7 @@ public class Satellite {
   }
 
   /**
-   * set the Google Maps marker to be associated with the satellite
+   * Set the Google Maps marker to be associated with the satellite
    *
    * @param marker the Google Maps marker to assign to this object
    */
@@ -223,7 +214,7 @@ public class Satellite {
   }
 
   /**
-   * obtain the attached Google Maps marker
+   * Obtain the attached Google Maps marker
    *
    * @return the Google Maps marker
    */
@@ -249,7 +240,7 @@ public class Satellite {
   }
 
   /**
-   * get the Norad ID for the satellite
+   * Get the Norad ID for the satellite
    *
    * @return the Norad ID
    */
@@ -258,7 +249,7 @@ public class Satellite {
   }
 
   /**
-   * get the International Designator for the satellite
+   * Get the International Designator for the satellite
    *
    * @return the International Designator
    */
@@ -282,12 +273,11 @@ public class Satellite {
    */
   public String[] getTles() {
     if (hasTle) {
-      String[] tles = {tle1, tle2};
-      return tles;
+      String[] tles = {tle1, tle2}; 
     } else {
       String[] tles = {"", ""};
-      return tles;
     }
+    return tles;
   }
 
   /**
@@ -312,7 +302,7 @@ public class Satellite {
   }
 
   /**
-   * set the latitude/longitude/altitude for the satellite
+   * Set the latitude/longitude/altitude for the satellite
    *
    * @param lat latitude (degrees)
    * @param lon longitude (degrees)
