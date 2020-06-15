@@ -273,11 +273,12 @@ public class Satellite {
    */
   public String[] getTles() {
     if (hasTle) {
-      String[] tles = {tle1, tle2}; 
+      String[] tles = {tle1, tle2};
+      return tles;
     } else {
       String[] tles = {"", ""};
+      return tles;
     }
-    return tles;
   }
 
   /**
