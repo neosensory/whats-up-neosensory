@@ -41,7 +41,7 @@ public class Utilities {
      * @return the distance (in km) between the two latitude/longitude coordinates
      */
     public static double getDistance(double lat1, double lat2, double lon1, double lon2) {
-        final int R = 6371; // Radious of the earth
+        final int R = 6371; // Radius of the earth
         double latDistance = toRad(lat2 - lat1);
         double lonDistance = toRad(lon2 - lon1);
         double a =
@@ -82,8 +82,5 @@ public class Utilities {
     private static Double toDeg(Double value) {
         return value * 180 / Math.PI;
     }
-
-
-
 
 }
